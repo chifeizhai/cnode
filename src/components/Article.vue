@@ -89,8 +89,8 @@ export default {
   name: "Article",
   data() {
     return {
-      isLoading: false, //是否正在加载
-      post: {}, //代表当前文章页的所有内容，所有属性
+      isLoading: false,
+      post: {},
     };
   },
   methods: {
@@ -138,6 +138,11 @@ export default {
 .article:not(:first-child) {
   margin-right: 300px;
   margin-top: 15px;
+}
+@media (max-width: 678px){
+  .article:not(:first-child){
+    margin:0px;
+  }
 }
 
 #reply,

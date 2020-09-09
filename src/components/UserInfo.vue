@@ -82,6 +82,12 @@ export default {
     width: 75%;
     margin: 10px auto;
   }
+  @media (max-width: 678px){
+    .userInfomation{
+      margin:0 auto;
+      width:100%;
+    }
+  }
   .userInfomation section {
     padding: 12px;
   }

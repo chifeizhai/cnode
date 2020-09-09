@@ -6,17 +6,11 @@
     <div class="posts" v-else>
       <ul>
         <li>
-          <div class="toobar">
-            <span>全部</span>
-            <span>精华</span>
-            <span>分享</span>
-            <span>问答</span>
-            <span>招聘</span>
-          </div>
+          <div class="toobar"></div>
         </li>
-        <li v-for="post in posts">
-          <img :src="post.author.avatar_url" alt />
-          <span>
+        <li class="aa" v-for="post in posts">
+          <img :src="post.author.avatar_url"/>
+          <span class="bb">
             <span class="reply_count">{{post.reply_count}}</span>
             /{{post.visit_count}}
           </span>
@@ -45,35 +39,35 @@
           <span class="last_reply">{{post.last_reply_at | formatDate}}</span>
         </li>
         <li>
-        <pagination @handleList="renderList"></pagination>
-      </li>
+          <pagination @handleList="renderList"></pagination>
+        </li>
       </ul>
     </div>
   </div>
 </template>
 
 <script>
-import pagination from './Pagination'
+import pagination from "./Pagination";
 export default {
   name: "PostList",
   data() {
     return {
       isLoading: false,
       posts: [],
-      postpage:1
+      postpage: 1,
     };
   },
-   components:{
-        pagination
-      },
+  components: {
+    pagination,
+  },
   methods: {
     getData() {
       this.$http
         .get("https://cnodejs.org/api/v1/topics", {
-          params:{
-                page:this.postpage,
-                limit:20
-              }
+          params: {
+            page: this.postpage,
+            limit: 20,
+          },
         })
         .then((res) => {
           this.isLoading = false;
@@ -83,10 +77,10 @@ export default {
           console.log(err);
         });
     },
-    renderList(value){
-          this.postpage = value;
-          this.getData();
-        }
+    renderList(value) {
+      this.postpage = value;
+      this.getData();
+    },
   },
   beforeMount() {
     this.isLoading = true;
@@ -102,6 +96,11 @@ export default {
 .posts {
   padding: 10px;
 }
+@media (max-width: 678px){
+  .posts{
+    padding: 0;
+  }
+}
 
 .PostList img {
   height: 30px;
@@ -115,7 +114,11 @@ ul {
   max-width: 1400px;
   margin: 0 auto;
 }
-
+@media (max-width: 678px){
+  ul{
+    padding: 0;
+  }
+}
 ul li:not(:first-child) {
   padding: 9px;
   font-size: 15px;
@@ -126,7 +129,31 @@ ul li:not(:first-child) {
   color: #333;
   border-top: 1px solid #f0f0f0;
 }
-
+@media (max-width: 678px){
+  ul li:not(:first-child){
+    position: relative;
+    padding: 10px 0 10px 10px;
+    font-size: 14px;
+    overflow: hidden;
+    height: 40px;
+  }
+}
+@media (max-width: 678px){
+  .aa{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+}
+@media (max-width: 678px){
+  .bb{
+    position: absolute;
+    bottom: 0;
+    left: 85px;
+    text-align: left;
+    font-size: 12px;
+  }
+}
 li:not(:first-child):hover {
   background: #f5f5f5;
 }
@@ -148,7 +175,7 @@ li span {
 
 .reply_count {
   color: #9e78c0;
-  font-size: 14px;
+  font-size: 12px;
 }
 
 .put_good,
@@ -162,6 +189,11 @@ li span {
   color: #fff;
   font-size: 12px;
   margin-right: 10px;
+}
+@media (max-width: 678px){
+  .put_top{
+    margin: 0;
+  }
 }
 
 .topiclist-tab {
@@ -184,6 +216,15 @@ li span {
   float: right;
   color: #778087;
   font-size: 12px;
+}
+
+@media (max-width: 678px){
+  .last_reply{
+    position: absolute;
+    bottom: 0;
+    right: 10px;
+    font-size: .8em;
+  }
 }
 
 .toobar {

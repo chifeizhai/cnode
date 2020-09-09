@@ -1,14 +1,11 @@
 <template>
 <div class="pagination">
   <button @click="changeBtn">首页</button>
-  <button @click="changeBtn">上一页</button>
-  <button v-if="jduge" class="pagebtn">......</button>
   <button v-for="btn in pagebtns"
           @click="changeBtn(btn)"
   :class="[{currentPage:btn == currentPage},'pagebtn']">
     {{btn}}
   </button>
-  <button @click="changeBtn">下一页</button>
 </div>
 </template>
 
@@ -19,7 +16,7 @@
         name: "Pagination",
            data(){
           return {
-            pagebtns:[1,2,3,4,5,'......'],
+            pagebtns:[1,2,3,4,5],
             currentPage:1,
             jduge:false
           }
@@ -28,14 +25,8 @@
         changeBtn(page){
           if(typeof page != 'number'){
             switch(page.target.innerText){
-              case '上一页':
-                $('button.currentPage').prev().click();
-                break;
-              case '下一页':
-                $('button.currentPage').next().click();
-                break;
               case '首页':
-                this.pagebtns = [1,2,3,4,5,'......'];
+                this.pagebtns = [1,2,3,4,5];
                 this.changeBtn(1);
                 break;
               default:
@@ -84,7 +75,12 @@
     width: 55px;
     height: 29px;
   }
-
+@media (max-width: 678px){
+  .pagination{
+    padding: 0;
+    border:none;
+  }
+}
   .pagebtn {
     position: relative;
     bottom: 1px;
@@ -94,7 +90,7 @@
 
   .currentPage {
     color: white;
-    background-color: #1f1b1b;
+    background-color: #555;
 
   }
 </style>

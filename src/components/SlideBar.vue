@@ -96,6 +96,11 @@ export default {
     float: right;
     margin-top: 0;
   }
+  @media (max-width: 678px){
+    .autherinfo{
+      display:none;
+    }
+  }
   li{
     padding: 3px 0 ;
   }
