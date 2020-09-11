@@ -3,7 +3,6 @@
     <div class="loading" v-if="isLoading">
       <img src="../assets/loading.gif" />
     </div>
-
     <div class="topic" v-else>
       <div class="topic_header">
         <div class="topic_title">{{post.title}}</div>
@@ -52,37 +51,6 @@
     </div>
   </div>
 </template>
-
-<script>
-export default {
-  name: "Article",
-  data() {
-    return {
-      isLoading: false,
-      post: [],
-    };
-  },
-  methods: {
-    getArticleData() {
-      this.$http
-        .get(`https://cnodejs.org/api/v1/topic/${this.$route.params.id}`)
-        .then((res) => {
-          if (res.data.success == true) {
-            this.isLoading = false;
-            this.post = res.data.data;
-          }
-        })
-        .catch(function (err) {
-          console.log(err);
-        });
-    },
-  },
-  beforeMount() {
-    this.isLoading = true;
-    this.getArticleData();
-  },
-};
-</script>
 
 <script>
 export default {
@@ -139,9 +107,9 @@ export default {
   margin-right: 300px;
   margin-top: 15px;
 }
-@media (max-width: 678px){
-  .article:not(:first-child){
-    margin:0px;
+@media (max-width: 678px) {
+  .article:not(:first-child) {
+    margin: 0px;
   }
 }
 
