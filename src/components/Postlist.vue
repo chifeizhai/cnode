@@ -3,6 +3,7 @@
     <div class="loading" v-if="isLoading">
       <img src="../assets/loading.gif" />
     </div>
+    
     <div class="posts" v-else>
       <ul>
         <li>
@@ -63,7 +64,7 @@ export default {
   methods: {
     getData() {
       this.$http
-        .get("https://cnodejs.org/api/v1/topics", {
+        .get("http://rap2api.taobao.org/app/mock/271351/api/v1/topics", {
           params: {
             page: this.postpage,
             limit: 20,

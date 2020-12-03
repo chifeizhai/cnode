@@ -57,7 +57,7 @@ export default {
       },
       methods:{
         getData(){
-          this.$http.get(`https://cnodejs.org/api/v1/user/${this.$route.params.name}`)
+          this.$http.get(`http://rap2api.taobao.org/app/mock/271351/api/v1/user/${this.$route.params.name}`)
             .then(res=>{
               this.isLoading = false;
               this.userinfo = res.data.data;

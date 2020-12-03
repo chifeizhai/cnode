@@ -3,6 +3,7 @@
     <div class="loading" v-if="isLoading">
       <img src="../assets/loading.gif" />
     </div>
+    
     <div class="topic" v-else>
       <div class="topic_header">
         <div class="topic_title">{{post.title}}</div>
@@ -64,7 +65,7 @@ export default {
   methods: {
     getArticleData() {
       this.$http
-        .get(`https://cnodejs.org/api/v1/topic/${this.$route.params.id}`)
+        .get(`http://rap2api.taobao.org/app/mock/271351/api/v1/topic/${this.$route.params.id}`)
         .then((res) => {
           if (res.data.success == true) {
             this.isLoading = false;
